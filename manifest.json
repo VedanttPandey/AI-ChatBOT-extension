@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "AI ChatBot Helper",
+  "version": "0.1",
+  "author": "Vedant Pandey",
+  "description": "This is my first Project That i will be building on my own",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://maang.in/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources" : [
+    {
+      "resources": [
+        "Images/*",
+        "inject.js"
+      ],
+      "matches" : ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "Images/ChatbotChatMessage.jpg",
+      "24": "Images/ChatbotChatMessage.jpg",
+      "32": "Images/ChatbotChatMessage.jpg"
+    },
+    "default_title": "AI ChatBot Helper"
+  }
+}
