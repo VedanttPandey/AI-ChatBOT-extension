@@ -1,42 +1,25 @@
-🚀 AI Helper Chrome Extension
+# 🚀 AI Helper Chrome Extension
 
-An AI-powered assistant integrated directly into coding platforms like maang.in to provide hints, explanations, and debugging help in real-time.
+An AI-powered assistant integrated directly into coding platforms like **maang.in** to provide hints, explanations, and debugging help in real-time.
 
-✨ Features
-💬 In-page Chat UI
+---
 
-Seamlessly opens inside the problem page — no tab switching.
+## ✨ Features
 
-🧠 AI Assistance (Gemini API)
+- 💬 In-page Chat UI (works inside problem page)
+- 🧠 AI Assistance using Gemini API
+- 🔍 Automatic Hint Extraction (fetch/XHR interception)
+- 🧾 Context-aware responses (code + hints + history)
+- 💾 Persistent chat history using chrome.storage
+- 🧹 Clear chat option
 
-Ask doubts, get hints, explanations, and code help.
+---
 
-🔍 Automatic Hint Extraction
+## 🏗️ Architecture
 
-Intercepts internal API calls to fetch:
-
-Hints
-Solution approaches
-Editorial code
-🧾 Context-Aware Responses
-
-AI receives:
-
-Your code
-Problem hints
-Previous chat history
-💾 Persistent Chat History
-
-Chats are saved per problem using chrome.storage.
-
-🧹 Clear Chat Option
-
-Reset conversation anytime.
-
-🏗️ Architecture
 Website (maang.in)
         ↓
-   inject.js  → Intercepts API calls (fetch/XHR)
+   inject.js  → intercepts API calls
         ↓
 window.postMessage
         ↓
@@ -44,41 +27,70 @@ window.postMessage
         ↓
 chrome.runtime.sendMessage
         ↓
- background.js → Calls Gemini API
+ background.js → calls Gemini API
         ↓
    Response → UI
-⚙️ How It Works
-1. UI Injection
-A button is injected into the problem page
-Clicking it opens a chat interface
-2. Network Interception
 
-inject.js overrides:
+---
 
-fetch
-XMLHttpRequest
+## ⚙️ How It Works
 
-Captures hidden API responses (hints, solutions)
+1. Injects a button into the problem page  
+2. Opens chat UI inside the page  
+3. Intercepts internal API calls (hints/solutions)  
+4. Stores extracted data in memory  
+5. Sends user query + context to AI  
+6. Displays AI response in chat  
 
-3. Data Processing
+---
 
-Extracts:
+## 📂 Project Structure
 
-hints
-solution approach
-editorial code
+AI-Helper-Extension/
+├── manifest.json  
+├── content.js  
+├── inject.js  
+├── background.js  
+├── Images/  
 
-Stores in memory (Map)
+---
 
-4. AI Communication
-User input + context → sent to background script
-Background script calls Gemini API
-Response is displayed in chat
-📂 Project Structure
-📦 AI-Helper-Extension
-├── manifest.json
-├── content.js        # UI + logic + storage
-├── inject.js         # Network interception
-├── background.js     # AI API handler
-├── Images/
-│   └── head.png
+## 🔧 Installation
+
+1. Clone repo:
+   git clone https://github.com/your-username/ai-helper-extension.git
+
+2. Open Chrome → chrome://extensions/  
+3. Enable Developer Mode  
+4. Click "Load unpacked"  
+5. Select project folder  
+
+---
+
+## 🔑 Setup
+
+Add your Gemini API key in `background.js`:
+
+const API_KEY = "YOUR_API_KEY";
+
+⚠️ Do not expose your API key publicly
+
+---
+
+## 🧠 Tech Stack
+
+- Chrome Extension (Manifest V3)
+- JavaScript
+- Chrome APIs (storage, runtime)
+- Fetch/XHR interception
+- Gemini API
+
+---
+
+## 🚨 Limitations
+
+- Depends on website API structure  
+- May break if site changes  
+- API key exposed (needs backend for production)
+
+---
