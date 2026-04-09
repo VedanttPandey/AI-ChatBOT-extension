@@ -58,7 +58,7 @@ AI-Helper-Extension/
 ## 🔧 Installation
 
 1. Clone repo:
-   git clone https://github.com/your-username/ai-helper-extension.git
+   git clone (https://github.com/VedanttPandey/AI-ChatBOT-extension.git)
 
 2. Open Chrome → chrome://extensions/  
 3. Enable Developer Mode  
